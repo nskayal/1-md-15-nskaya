@@ -1,0 +1,17 @@
+import random
+da = 0
+net = 0
+while True:
+    n1 = random.randint(1, 10)
+    n2 = random.randint(1, 10)
+    print(n1, '+', n2, '= ', end='')
+    rez = int(input())
+    if rez == n1 + n2:
+        print('Правильно!')
+        da += 1
+    else:
+        print('Ответ неверный')
+        net += 1
+    if net == 3:
+        break
+print('Игра окончена. Правильных ответов: ', da)
