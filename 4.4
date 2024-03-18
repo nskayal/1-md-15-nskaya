@@ -1,0 +1,14 @@
+n = input('Введите номер билета: ')
+def f(n):
+    if len(n)%2==0:
+        b = len(n)//2
+        psum = sum(map(int, n[:b]))
+        vsum = sum(map(int, n[b:]))
+        if psum == vsum:
+            print('Счастливый')
+        else:
+            print('Не счастливый')
+    else:
+        print('Ошибка')
+print(f(n))
+
