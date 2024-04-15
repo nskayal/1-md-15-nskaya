@@ -1,0 +1,47 @@
+def f1():
+    from PIL import Image
+    image = Image.open('photo.png')
+    image.show()
+    print('Формат:', image.format)
+    print('Размер:', image.size)
+    print('Цветовая модель:', image.mode)
+f1()
+
+def f2(in_path, out_path):
+    from PIL import Image
+    img = Image.open(in_path)
+    w = int(img.width)//3
+    h = int(img.height)//3
+    newi = img.resize((w, h))
+    newi.save(out_path)
+    newi.show()
+    img1 = newi.transpose(Image.FLIP_TOP_BOTTOM)
+    img1.show()
+    img1.save(out_path)
+    img2 = newi.transpose(Image.FLIP_RIGHT_LEFT)
+    img2.show()
+    img2.save(out_path)
+f2(in_path: 'Z:\\1-МД_15\\Непокульчинская\\photo.png', out_path: 'Z:\\1-МД_15\\Непокульчинская\\photo2.png')
+
+def f3():
+    from PIL import Image
+    images = "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"
+    for imgn in images:
+        img = Image.open(imgn)
+        fimg = img.filter(ImageFilter.FIND_EDGES)
+        fimg.show()
+        fimg.save("new")
+f3()
+
+def f4():
+    from PIL import Image
+    images = "1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"
+    watermark = Image.open("watermark.png")
+    for imgn in images:
+        img = Image.open(imgn)
+        position = (img.width - watermark.width, img.height - watermark.height)
+        imgw = img.copy()
+        imgw.paste(watermark, position)
+        imgw.show()
+        imgw.save("new")
+f4()
