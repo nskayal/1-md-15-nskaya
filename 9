@@ -1,0 +1,29 @@
+from PIL import Image
+from PIL import ImageFilter
+from pathlib import Path
+images = Path('1-md-15-nskaya')
+new = Path('новое')
+new.mkdir()
+new.is_dir()
+for image in images():
+    fimg = image.filter(ImageFilter.FIND_EDGES)
+    fimg.show()
+    fimg.save("new")
+
+
+def f2():
+    from PIL import Image
+    from PIL import ImageFilter
+    from pathlib import Path
+    images = Path('1-md-15-nskaya')
+    new = Path('новое')
+    new.mkdir()
+    for image in images():
+        if image.suffix() == '.jpg':
+            fimg = image.filter(ImageFilter.FIND_EDGES)
+            fimg.show()
+            fimg.save("new")
+f2()
+
+def f3():
+    import csv
