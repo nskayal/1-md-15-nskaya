@@ -1,0 +1,34 @@
+def f1():
+    from PIL import Image
+    img = Image.open("s.jpg")
+    area = (100, 100, 400, 400)
+    imgc = img.crop(area)
+    cropped_img.save("s2.jpg")
+f1()
+
+def f2():
+    from PIL import Image
+    imgs = {"День рождения": "s.jpg", "Новый Год": "n.jpg", "8 Марта": "8.jpg"}
+    holiday = input("Введите название праздника: ")
+    if holiday in imgs:
+        img = Image.open(imgs[holiday])
+        img.show()
+    else:
+        print("Нет открытки для этого праздника")
+f2()
+
+def f3():
+    from PIL import Image, ImageDraw, ImageFont
+    import requests
+    name = input("Введите имя человека, которого вы хотите поздравить: ")
+    img = Image.open("s.jpg")
+    draw = ImageDraw.Draw(img)
+    width, height = img.size
+    font = ImageFont.truetype("arialbold.ttf", 40)  #шрифт Arial Bold
+    color = 'red'
+    text = f"{name}, поздравляю!"
+    text_width, text_height = draw.textsize(text, font=font)
+    text_x = (width - text_width) // 2 #вверху по центру
+    text_y = 20
+    draw.text((text_x, text_y), text, fill=color, font=font)
+    img.save('s3.png', 'PNG')
