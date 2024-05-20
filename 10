@@ -1,0 +1,68 @@
+def a():
+    import json
+    with open('products.json') as f:
+        data = json.load(f)
+    
+    for product in data['products']:
+        print(f"Название: {product['name']}")
+        print(f"Цена: {product['price']}")
+        print(f"Вес: {product['weight']}")
+        if product['available']:
+            print("В наличии")
+        else:
+            print("Нет в наличии!")
+        print()
+    def write_to_file(data):
+    with open('products.json', 'w') as f:
+        json.dump(data, f, indent=2)
+    try:
+        with open('products.json') as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        data = {"products": []}
+
+    show_products(data['products'])
+
+    while True:
+        add_product = input("Желаете добавить новый продукт в список? (да/нет): ")
+        if add_product.lower() != 'да':
+            break
+        new_product = {
+            "name": input("Введите название продукта: "),
+            "price": int(input("Введите цену продукта: ")),
+            "weight": int(input("Введите вес продукта: ")),
+            "available": input("Доступен ли продукт? (да/нет): ").lower() == 'да'
+        }
+        data['products'].append(new_product)
+
+    write_to_file(data)
+
+    with open('products.json') as f:
+        updated_data = json.load(f)
+
+    show_products(updated_data['products'])
+a()
+
+def b():
+    def create_ru_en_dictionary(input_file, output_file):
+        ru_en_dict = {}
+        
+        with open(input_file, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                en_words, ru_words = line.strip().split(' - ')
+                ru_words_list = ru_words.split(', ')
+                for ru_word in ru_words_list:
+                    if ru_word not in ru_en_dict:
+                        ru_en_dict[ru_word] = [en_words]
+                    else:
+                        ru_en_dict[ru_word].append(en_words)
+        
+        with open(output_file, 'w') as file:
+            for ru_word in sorted(ru_en_dict.keys()):
+                en_words_str = ', '.join(sorted(ru_en_dict[ru_word]))
+                file.write(f"{ru_word} - {en_words_str}\n")
+
+    create_ru_en_dictionary('en-ru.txt', 'ru-en.txt')
+b()
+    
