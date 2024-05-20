@@ -1,0 +1,19 @@
+def f():
+    class Restaurant:
+        def __int__(self, restaurant_name, cuisine_type):
+            self.restaurant_name = restaurant_name
+            self.cuisine_type = cuisine_type
+        def describe_restaurant(self):
+            print(f"Ресторан {self.restaurant_name} специализируется на кухне {self.cuisine_type}")
+    class IceCreamStand(Restaurant):
+        def __int__(self, restaurant_name, cuisine_type, flavors=[]):
+            super().__int__(restaurant_name, cuisine_type)
+            self.flavors = flavors
+        def display_flavors(self):
+            print("Список сортов мороженого: ")
+            for flavor in self.flavors:
+                print(flavor)
+    ice_cream_stand = IceCreamStand("Кафе", "Мороженое", ["Шоколад, Фисташка, Ваниль, Клубника"])
+    ice_cream_stand.describe_restaurant()
+    ice_cream_stand.display_flavors()
+f()
